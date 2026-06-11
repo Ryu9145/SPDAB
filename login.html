@@ -17,16 +17,13 @@
 <body>
 
     <div class="login-wrapper">
-        <!-- Background Decoratives -->
         <div class="abstract-blob blob-1"></div>
         <div class="abstract-blob blob-2"></div>
 
-        <!-- Tombol Kembali ke Beranda -->
         <a href="index.html" class="back-to-home" data-aos="fade-right" data-aos-duration="800">
             <i class='bx bx-arrow-back'></i> Kembali ke Beranda
         </a>
 
-        <!-- Kotak Utama Login (Glassmorphism) -->
         <div class="login-container" data-aos="zoom-in" data-aos-duration="1000">
             <div class="login-header">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="login-logo">
@@ -36,7 +33,6 @@
 
             <form class="login-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Simulasi Login Berhasil!');">
                 
-                <!-- Input Username/Email -->
                 <div class="form-group">
                     <label for="username">Nama Pengguna / Email</label>
                     <div class="input-box">
@@ -45,7 +41,6 @@
                     </div>
                 </div>
 
-                <!-- Input Password -->
                 <div class="form-group">
                     <label for="password">Kata Sandi</label>
                     <div class="input-box">
@@ -55,7 +50,6 @@
                     </div>
                 </div>
 
-                <!-- Opsi Tambahan -->
                 <div class="form-options">
                     <label class="remember-me">
                         <input type="checkbox">
@@ -64,7 +58,6 @@
                     <a href="#" class="forgot-password-link">Lupa Sandi?</a>
                 </div>
 
-                <!-- Tombol Submit -->
                 <button type="submit" class="btn-login-submit">
                     Masuk ke Dashboard <i class='bx bx-right-arrow-alt'></i>
                 </button>
@@ -76,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Library Animasi AOS JS & Inisialisasi -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -84,7 +76,6 @@
             easing: 'ease-in-out'
         });
 
-        // Script fungsionalitas menyembunyikan/melihat password
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
 

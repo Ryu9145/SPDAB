@@ -132,7 +132,6 @@ body {
     box-shadow: 0 12px 20px -8px rgba(2, 132, 199, 0.3);
 }
 
-/* PREMIUM HERO SECTION */
 .premium-hero { 
     position: relative; 
     min-height: 640px; 
@@ -187,7 +186,6 @@ body {
 .premium-hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--text-dark); line-height: 1.35; letter-spacing: -1.2px; margin-bottom: 22px; text-shadow: 0 10px 30px rgba(255,255,255,0.5); }
 .premium-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 720px; margin: 0 auto; line-height: 1.75; font-weight: 500; }
 
-/* HORIZONTAL CONTROLLER WORKSPACE */
 .gis-workspace-section { 
     padding: 20px 40px 60px; 
     max-width: 1440px; 
@@ -211,7 +209,6 @@ body {
 .control-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
 .control-divider { width: 1px; height: 42px; background: var(--border-thin); align-self: center; opacity: 0.7; }
 
-/* Segmented Controls Modifikasi Fluid */
 .segmented-pill-wrapper { display: flex; gap: 4px; background: #F1F5F9; padding: 4px; border-radius: 12px; }
 .segment-pill-btn { 
     border: none; 
@@ -242,7 +239,6 @@ body {
 .indicator-dot.blue { background: var(--brand-blue); }
 .segment-pill-btn.active .indicator-dot { transform: scale(1.3); }
 
-/* Customisasi Dropdown Elit */
 .custom-select-wrapper { position: relative; display: flex; align-items: center; width: 100%; }
 .minimal-select { 
     width: 100%; 
@@ -273,7 +269,6 @@ body {
 #regionSelectDropdown { padding-left: 44px; min-width: 290px; }
 .minimal-select:focus ~ i { transform: translateY(-2px) scale(1.1); color: var(--brand-blue-dark); }
 
-/* MAP VIEWPORT & MAP PIN */
 .map-viewport-wrapper { 
     position: relative; 
     height: 620px; 
@@ -285,7 +280,6 @@ body {
 }
 #map { width: 100%; height: 100%; z-index: 1; }
 
-/* Custom Maker UI Manusiawi (Organik) */
 .gis-premium-marker {
     background: var(--brand-blue);
     border: 2px solid var(--white);
@@ -301,7 +295,6 @@ body {
     animation: none;
 }
 
-/* MAP FLOATING SHEET */
 .floating-gis-data-sheet { 
     position: absolute; 
     top: 24px; 
@@ -332,7 +325,6 @@ body {
 .metric-card-notes h4 { font-size: 0.72rem; text-transform: uppercase; color: var(--brand-blue-dark); letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 800; }
 .metric-card-notes p { font-size: 0.82rem; line-height: 1.6; color: var(--text-dark); font-weight: 500; }
 
-/* GLASSMORPHISM CORPORATE FOOTER */
 .footer-blur-container { padding: 40px 40px 40px; }
 .corporate-footer-glass { 
     background: rgba(255, 255, 255, 0.6); 
@@ -366,7 +358,6 @@ body {
 
 .footer-bottom-bar { text-align: center; padding-top: 24px; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.2px; }
 
-/* REVISI & PENYELESAIAN POPUP MODAL (Fixing Truncated CSS Bug) */
 .modal-window-backdrop { 
     position: fixed; 
     inset: 0; 
@@ -418,7 +409,6 @@ body {
 .btn-action-solid { background: var(--brand-blue); border: none; color: var(--white); padding: 12px 24px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); transition: var(--transition-elastic); }
 .btn-action-solid:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.4); }
 
-/* KEYFRAMES ANIMASI (Sentuhan Hidup Makhluk Hidup) */
 @keyframes cubicFadeInUp {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -525,7 +515,6 @@ body {
 .purpose-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
 .purpose-info p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
 
-/* Komponen Visual Sisi Kanan (Aksen Organik Buatan Manusia) */
 .about-visual-showcase {
     position: relative;
     height: 450px;
@@ -534,7 +523,6 @@ body {
     justify-content: center;
 }
 
-/* Bentuk Liquid/Cairan Organik Abstrak Bergerak */
 .organic-blob-shape {
     position: absolute;
     width: 320px;
@@ -579,8 +567,6 @@ body {
 .water-card-glass h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
 .water-card-glass p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 
-
-/* ================= STYLE BARU: GALERI PROGRES ================= */
 .gallery-progress-section {
     padding: 100px 40px;
     max-width: 1440px;
@@ -905,7 +891,7 @@ body {
    STRUKTUR NAVIGASI UTAMA (DESKTOP VIEW)
    ========================================================================== */
 .nav-burger-btn {
-    display: none; /* Tersembunyi otomatis di layar besar komputer */
+    display: none;
     font-size: 2rem;
     color: #1e293b;
     cursor: pointer;
@@ -983,14 +969,13 @@ body {
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* PERBAIKAN 2: HILANGKAN BLOB & KARTU INFORMASI FLOATING PADA MOBILE */
+
     .organic-blob-shape,
     .stats-floating-glass, 
     .water-card-glass {
-        display: none !important; /* Menyembunyikan teks wilayah sungai & 100% validasi */
+        display: none !important; 
     }
 
-    /* HEADER & BURGER BUTTON INTERACTION */
     .nav-burger-btn {
         display: block; 
     }
@@ -1057,10 +1042,9 @@ body {
         width: 100% !important; 
         justify-content: center;
         padding: 14px;
-        text-decoration: none !important; /* Memastikan di mobile juga tidak ada underline */
+        text-decoration: none !important;
     }
 
-    /* 3. HERO LAYER & LAYOUT GRID SYSTEM ADJUSTMENT */
     .premium-hero {
         padding: 140px 20px 60px 20px;
     }
@@ -1104,34 +1088,75 @@ body {
         gap: 25px;
     }
 
-    /* 4. RESPONSIVE FOOTER CORPORATE */
     .footer-grid-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        text-align: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 35px !important;
+    width: 100% !important;
     }
 
-    .footer-brand-column, .footer-links-column, .footer-contact-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .footer-brand-column, 
+    .footer-links-column, 
+    .footer-contact-column {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
     }
 
-    .footer-logo, .footer-social-links {
-        justify-content: center;
+    .footer-brand-column h4, .footer-brand-column p,
+    .footer-links-column h4,
+    .footer-contact-column h4 {
+        text-align: center !important;
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .footer-logo, 
+    .footer-social-links {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 15px !important;
     }
 
     .footer-links-column ul {
-        width: 100%;
-        padding: 0;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+
+    .footer-links-column ul li {
+        width: 100% !important;
+        text-align: center !important;
     }
 
     .footer-links-column ul li a {
-        justify-content: center;
+        display: block !important;
+        text-align: center !important;
+        padding: 8px 0 !important;
+        width: 100% !important;
+    }
+
+    .footer-contact-column p, 
+    .footer-contact-column div {
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        text-align: center !important;
     }
 
     .footer-bottom-bar {
-        text-align: center;
-        padding: 20px 10px;
+        text-align: center !important;
+        padding: 20px 10px !important;
+        width: 100% !important;
     }
 }

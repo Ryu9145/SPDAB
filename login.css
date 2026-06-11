@@ -1,4 +1,4 @@
-/* RESET & FONTS */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +22,6 @@ body {
     height: 100vh;
 }
 
-/* CONTAINER UTAMA & BACKGROUND DEKORATIF */
 .login-wrapper {
     position: relative;
     width: 100%;
@@ -58,7 +57,6 @@ body {
     right: -50px;
 }
 
-/* TOMBOL KEMBALI */
 .back-to-home {
     position: absolute;
     top: 30px;
@@ -85,7 +83,6 @@ body {
     transform: translateX(-4px);
 }
 
-/* KOTAK LOGIN GLASSMORPHISM */
 .login-container {
     position: relative;
     z-index: 5;
@@ -100,7 +97,6 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* HEADER LOGIN */
 .login-header {
     text-align: center;
     margin-bottom: 30px;
@@ -130,7 +126,6 @@ body {
     color: var(--accent-blue);
 }
 
-/* FORMULIR INPUT */
 .login-form .form-group {
     margin-bottom: 20px;
 }
@@ -194,7 +189,6 @@ body {
     color: var(--primary-blue);
 }
 
-/* OPSI TAMBAHAN (REMEMBER ME & LUPA PASSWORD) */
 .form-options {
     display: flex;
     justify-content: space-between;
@@ -259,7 +253,6 @@ body {
     transform: translateX(4px);
 }
 
-/* FOOTER LOGIN */
 .login-footer {
     text-align: center;
     margin-top: 30px;
@@ -273,7 +266,6 @@ body {
     line-height: 1.5;
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
     .login-container {
         padding: 30px 20px;
@@ -287,35 +279,29 @@ body {
 }
 
 /* ==========================================================================
-   MEDIA QUERIES: RESPONSIVE FOR LOGIN PAGE (Maksimal 768px) - ANTI TERPOTONG
+   MEDIA QUERIES: RESPONSIVE FOR LOGIN PAGE (Maksimal 768px)
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* 1. Pengaturan Container Utama (SOLUSI UTAMA AGAR BISA DI-SCROLL) */
     .login-wrapper, 
     .login-main-container {
         display: flex !important;
         flex-direction: column !important; 
-        /* Ganti center menjadi flex-start agar elemen mulai dari atas dan bisa memanjang ke bawah */
         justify-content: flex-start !important; 
         align-items: center !important;
         
-        /* Maksimalkan fleksibilitas tinggi halaman */
         height: auto !important;          
         min-height: 100vh !important;     
         
-        /* Berikan padding bawah yang besar (80px) sebagai 'ruang napas' saat di-scroll */
         padding: 30px 20px 80px 20px !important; 
-        overflow-y: auto !important; /* Memastikan fungsi scroll vertikal aktif */
+        overflow-y: auto !important; 
     }
 
-    /* Sembunyikan kolom ilustrasi jika ada */
     .login-illustration-side, 
     .login-bg-image {
         display: none !important;
     }
 
-    /* 2. Optimasi Kotak Form Login */
     .login-box, 
     .login-card {
         position: relative !important;    
@@ -326,13 +312,12 @@ body {
         width: 100% !important;     
         max-width: 100% !important; 
         padding: 25px 20px;               
-        margin-top: 10px !important;      /* Jarak tipis dari batas atas layar */
+        margin-top: 10px !important;     
         margin-bottom: 0 !important;      
         box-shadow: 0 8px 24px rgba(0,0,0,0.05); 
         border-radius: 16px;
     }
 
-    /* 3. Penyesuaian Ukuran Komponen Teks & Logo */
     .login-header-brand img {
         height: 45px;                     
         width: auto;
@@ -349,7 +334,6 @@ body {
         line-height: 1.3;
     }
 
-    /* 4. Optimasi Input Form & Tombol Masuk */
     .input-group-field {
         padding: 10px 12px !important;    
         font-size: 0.9rem;
@@ -367,7 +351,6 @@ body {
         font-size: 0.95rem;
     }
 
-    /* 5. Tombol Kembali di Bawah Form */
     .back-to-home {
         position: relative !important; 
         top: auto !important;
@@ -388,7 +371,6 @@ body {
     }
 }
 
-/* --- OPTIMASI UNTUK HP SANGAT KECIL (Maksimal 480px) --- */
 @media (max-width: 480px) {
     .login-box {
         padding: 20px 15px;
@@ -398,7 +380,6 @@ body {
     
     .login-wrapper, 
     .login-main-container {
-        /* Tambah padding bawah menjadi 100px di HP kecil agar tidak mentok keyboard */
         padding: 20px 15px 100px 15px !important; 
     }
 }

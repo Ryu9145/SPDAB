@@ -161,11 +161,9 @@ const navMenuResponsive = document.getElementById('navMenuResponsive');
 const burgerIcon = document.getElementById('burgerIcon');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Fungsi Toggle Buka/Tutup Menu
 burgerToggle.addEventListener('click', () => {
     navMenuResponsive.classList.toggle('active');
     
-    // Animasi perubahan icon burger ke icon silang (X)
     if (navMenuResponsive.classList.contains('active')) {
         burgerIcon.className = 'bx bx-x';
         burgerToggle.style.transform = 'rotate(90deg)';
@@ -175,7 +173,7 @@ burgerToggle.addEventListener('click', () => {
     }
 });
 
-// Otomatis menutup menu kembali ketika salah satu link navigasi ditekan
+
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenuResponsive.classList.remove('active');
