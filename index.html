@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPDAB CIKASDA — Provinsi Sulawesi Tengah</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <!-- Library Animasi AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="nav-wrapper">
+            <div class="brand-signature">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="sulteng-corporate-logo">
+                <div class="brand-meta">
+                    <h2>SPDAB CIKASDA</h2>
+                    <p>Provinsi Sulawesi Tengah</p>
+                </div>
+            </div>
+            <div class="nav-navigation">
+                <a href="#beranda" class="nav-link active">Beranda</a>
+                <a href="#tentang-tujuan" class="nav-link">Tentang</a>
+                <a href="#eksplorasi-gis" class="nav-link">Peta Utama</a>
+                <a href="#galeri-progres" class="nav-link">Galeri Fisik</a>
+                <button class="nav-btn-action" id="btnNavPermohonan">Permohonan Data</button>
+            </div>
+            <div class="nav-action">
+                <a href="login.html" class="btn-login-portal" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                    <i class='bx bx-lock-alt'></i> Portal Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="beranda" class="premium-hero">
+        <div class="hero-bg-image"></div>
+        <div class="hero-gradient-overlay"></div>
+        <div class="hero-content">
+            <!-- Hero elements animasi memudar ke atas -->
+            <div class="hero-badge" data-aos="fade-up">
+                <span class="badge-pulse"></span> Integrasi Data Geospasial Aktual 2026
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="150">Sistem Informasi Data Pembangunan <br>Sungai, Pantai, Danau dan Air Baku (SPDAB)</h1>
+            <p data-aos="fade-up" data-aos-delay="300">Konsolidasi data spasial infrastruktur sumber daya air di wilayah Provinsi Sulawesi Tengah dalam satu platform pemantauan yang transparan dan akurat.</p>
+        </div>
+    </section>
+
+    <section id="tentang-tujuan" class="about-purpose-section">
+        <div class="about-container">
+            <div class="about-narrative">
+                <div class="organic-badge" data-aos="fade-down">
+                    <i class='bx bx-info-circle'></i> Manifes Platform
+                </div>
+                <h2 data-aos="fade-right" data-aos-delay="100">Menjaga Aliran Kehidupan, <br>Membangun Masa Depan Sulteng</h2>
+                <p class="body-text" data-aos="fade-up" data-aos-delay="200">
+                    Platform ini dirancang khusus untuk Melaksanakan Pengembangan dan Pengelolaan Jaringan Irigasi dan Rawa, serta Pengelolaan dan Konservasi Sungai, Danau,Pantai dan Air Baku di Wilayah Provinsi Sulawesi Tengah
+                </p>
+                
+                <div class="purpose-fluid-grid">
+                    <!-- Kartu-kartu tujuan muncul dari bawah berjenjang -->
+                    <div class="purpose-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="purpose-icon blue"><i class='bx bx-bullseye'></i></div>
+                        <div class="purpose-info">
+                            <h3>Akurasi Spasial</h3>
+                            <p>Memastikan setiap titik konstruksi sungai dan air baku terekam presisi berbasis koordinat aktual.</p>
+                        </div>
+                    </div>
+                    <div class="purpose-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="purpose-icon green"><i class='bx bx-show-alt'></i></div>
+                        <div class="purpose-info">
+                            <h3>Transparansi Publik</h3>
+                            <p>Membuka akses monitoring bagi masyarakat, akademisi, dan instansi untuk memantau pemanfaatan anggaran.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bagian visual masuk dari arah kanan -->
+            <div class="about-visual-showcase" data-aos="fade-left" data-aos-delay="300">
+                <div class="organic-blob-shape"></div>
+                <div class="stats-floating-glass animate-float">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Validasi Lapangan</span>
+                </div>
+                <div class="water-card-glass">
+                    <h4>Wilayah Sungai Strategis</h4>
+                    <p>Mencakup pengelolaan terpadu di 12 Kabupaten/Kota Sulawesi Tengah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eksplorasi-gis" class="gis-workspace-section" data-aos="fade-up" data-aos-duration="1200">
+        <div class="workspace-container">
+            
+            <div class="gis-horizontal-control-bar">
+                
+                <div class="control-segment">
+                    <span class="control-label">Jenis Infrastruktur</span>
+                    <div class="segmented-pill-wrapper">
+                        <button class="segment-pill-btn active" data-category="sungai"><span class="indicator-dot green"></span>Sungai</button>
+                        <button class="segment-pill-btn" data-category="pantai"><span class="indicator-dot blue"></span>Pantai</button>
+                        <button class="segment-pill-btn" data-category="danau"><span class="indicator-dot green"></span>Danau</button>
+                        <button class="segment-pill-btn" data-category="air-baku"><span class="indicator-dot blue"></span>Air Baku</button>
+                    </div>
+                </div>
+
+                <div class="control-divider"></div>
+
+                <div class="control-segment">
+                    <span class="control-label">Tahun</span>
+                    <div class="custom-select-wrapper">
+                        <select id="yearSelectDropdown" class="minimal-select">
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2022</option>
+                            <option value="2023">2022</option>
+                            <option value="2023">2021</option>
+                            <option value="2023">2021</option>
+                        </select>
+                        <i class='bx bx-chevron-down select-arrow'></i>
+                    </div>
+                </div>
+
+                <div class="control-divider"></div>
+
+                <div class="control-segment flex-grow-segment">
+                    <span class="control-label">Wilayah Kerja / Kabupaten</span>
+                    <div class="custom-select-wrapper">
+                        <select id="regionSelectDropdown" class="minimal-select">
+                            <option value="ALL">Seluruh Wilayah</option>
+                        </select>
+                        <i class='bx bx-map-pin select-arrow-left'></i> <i class='bx bx-chevron-down select-arrow'></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <main class="map-viewport-wrapper">
+                <div id="map"></div>
+
+                <div class="floating-gis-data-sheet" id="gisDetailSheet">
+                    <div class="sheet-top-bar">
+                        <div class="sheet-badge"><i class='bx bx-cube-alt'></i> <span id="sheetCategoryBadge">Sungai</span></div>
+                        <button class="sheet-close-btn" id="closeSheetBtn"><i class='bx bx-x'></i></button>
+                    </div>
+                    <h3 id="sheetProjectTitle">Nama Proyek Kontruksi</h3>
+                    <div class="sheet-content-metrics">
+                        <div class="metric-item">
+                            <span class="m-label">Volume Konstruksi</span>
+                            <span class="m-value" id="sheetVolumeValue">-</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="m-label">Titik Koordinat GPS</span>
+                            <span class="m-value text-blue" id="sheetCoordsValue">-</span>
+                        </div>
+                        <div class="metric-card-notes">
+                            <h4>Catatan Teknis Lapangan</h4>
+                            <p id="sheetDescriptionValue">-</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </section>
+
+    <section id="galeri-progres" class="gallery-progress-section">
+        <div class="gallery-section-header" data-aos="fade-down">
+            <div class="organic-badge green">
+                <i class='bx bx-images'></i> Bukti Fisik Lapangan
+            </div>
+            <h2>Eksplorasi Visual Pembangunan</h2>
+            <p>Melihat perubahan nyata kondisi infrastruktur melalui dokumentasi autentik tim satuan kerja CIKASDA.</p>
+        </div>
+
+        <div class="gallery-fluid-grid">
+            
+            <!-- Kartu Galeri 1 (Efek zoom-in dari bawah) -->
+            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="100">
+                <div class="gallery-image-wrapper">
+                    <img src="https://akcdn.detik.net.id/community/media/visual/2017/09/25/691a00d3-b2e8-4934-9be1-70853d0c3378.jpg?w=700&q=90" alt="Pekerjaan Sungai">
+                    <span class="project-tag tag-river">Sungai</span>
+                </div>
+                <div class="gallery-details">
+                    <div class="project-meta-top">
+                        <span><i class='bx bx-map'></i> Sigi</span>
+                        <span class="status-badge done">Selesai</span>
+                    </div>
+                    <h3>Pembangunan Tanggul Normalisasi Sungai Gumbasa</h3>
+                    <p>Proteksi kawasan pemukiman warga dari luapan debit air sungai saat curah hujan tinggi.</p>
+                    <div class="project-progress-bar">
+                        <div class="bar-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kartu Galeri 2 -->
+            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="200">
+                <div class="gallery-image-wrapper">
+                    <img src="https://www.ijintender.co.id/images/article/3226%20Desember%202020.jpg" alt="Fasilitas Air Baku">
+                    <span class="project-tag tag-water">Air Baku</span>
+                </div>
+                <div class="gallery-details">
+                    <div class="project-meta-top">
+                        <span><i class='bx bx-map'></i> Donggala</span>
+                        <span class="status-badge active">On Progress</span>
+                    </div>
+                    <h3>Pipa Transmisi & Reservoir Air Baku Zona Pantai Barat</h3>
+                    <p>Peningkatan kapasitas suplai air bersih untuk kebutuhan domestik masyarakat pesisir.</p>
+                    <div class="project-progress-bar">
+                        <div class="bar-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kartu Galeri 3 -->
+            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="300">
+                <div class="gallery-image-wrapper">
+                    <img src="https://sulawesi.news/wp-content/uploads/2022/11/IMG-20221104-WA0272.jpg" alt="Pengamanan Pantai">
+                    <span class="project-tag tag-coast">Pantai</span>
+                </div>
+                <div class="gallery-details">
+                    <div class="project-meta-top">
+                        <span><i class='bx bx-map'></i> Palu</span>
+                        <span class="status-badge done">Selesai</span>
+                    </div>
+                    <h3>Revitalisasi Breakwater & Tanggul Pengaman Pantai Talise</h3>
+                    <p>Mereduksi energi gelombang pasang sekaligus menata kembali estetika ruang publik pantai kota.</p>
+                    <div class="project-progress-bar">
+                        <div class="bar-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="footer-blur-container">
+        <footer class="corporate-footer-glass">
+            <div class="footer-grid-container">
+                <div class="footer-brand-column">
+                    <div class="footer-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="sulteng-corporate-logo-footer">
+                        <h3>SPDAB <span>CIKASDA</span></h3>
+                    </div>
+                    <p class="footer-brand-text">Sistem Informasi Data Pembangunan Sungai, Pantai, Danau dan Air Baku Dinas Cipta Karya dan Sumber Daya Air Provinsi Sulawesi Tengah.</p>
+                    <div class="footer-social-links">
+                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="#"><i class='bx bxl-instagram-alt' ></i></a>
+                        <a href="#"><i class='bx bxl-youtube' ></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Akses Layanan</h4>
+                    <ul>
+                        <li><a href="#beranda"><i class='bx bx-chevron-right'></i> Halaman Utama</a></li>
+                        <li><a href="#eksplorasi-gis"><i class='bx bx-chevron-right'></i> Peta Grid Spasial</a></li>
+                        <li><button onclick="document.getElementById('btnNavPermohonan').click()"><i class='bx bx-chevron-right'></i> Form Hak Akses Data</button></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-column">
+                    <h4>Informasi & Kontak</h4>
+                    <p><i class='bx bx-map-pin' ></i> Jl. Kartini No.100, Kota Palu, Sulawesi Tengah</p>
+                    <p><i class='bx bx-envelope' ></i> support.spdab@sultengprov.go.id</p>
+                    <p><i class='bx bx-phone' ></i> (0451) 421234 / Fax: 421235</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Dinas CIKASDA Provinsi Sulawesi Tengah. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal-window-backdrop" id="requestDataModal">
+        <div class="modal-window-container">
+            <button class="modal-close-trigger" id="closeModalBtn"><i class='bx bx-x'></i></button>
+            <div class="modal-window-header">
+                <div class="modal-header-icon"><i class='bx bx-shield-quarter'></i></div>
+                <h3>Formulir Permohonan Akses Data</h3>
+                <p>Arsip data di bawah tahun 2026 memerlukan verifikasi dan perizinan tertulis dari pihak sekretariat CIKASDA.</p>
+            </div>
+            <form id="requestForm" onsubmit="event.preventDefault(); alert('Formulir terkirim! Tim admin CIKASDA akan memverifikasi permohonan Anda via email.'); document.getElementById('closeModalBtn').click();">
+                <div class="form-group-input">
+                    <label>Nama Lengkap / Instansi Pemohon</label>
+                    <input type="text" required placeholder="Contoh: Badan Peneliti Universitas Tadulako">
+                </div>
+                <div class="form-group-input">
+                    <label>Alamat Email Kontak Resmi</label>
+                    <input type="email" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group-input">
+                    <label>Alamat Email Kontak Resmi</label>
+                    <input type="email" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group-input">
+                    <label>Alasan Pengajuan Data Historis</label>
+                    <textarea rows="3" required placeholder="Tuliskan alasan analitis atau keperluan studi Anda dengan jelas..."></textarea>
+                </div>
+                <div class="modal-footer-actions">
+                    <button type="button" class="btn-action-outline" id="cancelModalBtn">Batalkan</button>
+                    <button type="submit" class="btn-action-solid">Kirim Berkas Pengajuan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    
+    <!-- Library Animasi AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

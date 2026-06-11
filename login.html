@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login — SPDAB CIKASDA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Library Animasi AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- CSS Khusus Login -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <!-- Background Decoratives -->
+        <div class="abstract-blob blob-1"></div>
+        <div class="abstract-blob blob-2"></div>
+
+        <!-- Tombol Kembali ke Beranda -->
+        <a href="index.html" class="back-to-home" data-aos="fade-right" data-aos-duration="800">
+            <i class='bx bx-arrow-back'></i> Kembali ke Beranda
+        </a>
+
+        <!-- Kotak Utama Login (Glassmorphism) -->
+        <div class="login-container" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="login-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="login-logo">
+                <h2>Portal Admin</h2>
+                <p>Sistem Informasi Data Pembangunan <br><strong>SPDAB CIKASDA SULTENG</strong></p>
+            </div>
+
+            <form class="login-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Simulasi Login Berhasil!');">
+                
+                <!-- Input Username/Email -->
+                <div class="form-group">
+                    <label for="username">Nama Pengguna / Email</label>
+                    <div class="input-box">
+                        <i class='bx bx-user input-icon'></i>
+                        <input type="text" id="username" required placeholder="Masukkan username resmi">
+                    </div>
+                </div>
+
+                <!-- Input Password -->
+                <div class="form-group">
+                    <label for="password">Kata Sandi</label>
+                    <div class="input-box">
+                        <i class='bx bx-lock-alt input-icon'></i>
+                        <input type="password" id="password" required placeholder="••••••••">
+                        <i class='bx bx-hide toggle-password' id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <!-- Opsi Tambahan -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span class="checkmark"></span> Ingat Sesi Saya
+                    </label>
+                    <a href="#" class="forgot-password-link">Lupa Sandi?</a>
+                </div>
+
+                <!-- Tombol Submit -->
+                <button type="submit" class="btn-login-submit">
+                    Masuk ke Dashboard <i class='bx bx-right-arrow-alt'></i>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>&copy; 2026 Dinas CIKASDA Sulawesi Tengah. <br> Keamanan Terenkripsi SSL.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Library Animasi AOS JS & Inisialisasi -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Script fungsionalitas menyembunyikan/melihat password
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            
+            this.classList.toggle('bx-show');
+            this.classList.toggle('bx-hide');
+        });
+    </script>
+</body>
+</html>
