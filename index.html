@@ -9,7 +9,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     
-    <!-- Library Animasi AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <link rel="stylesheet" href="style.css">
@@ -25,17 +24,22 @@
                     <p>Provinsi Sulawesi Tengah</p>
                 </div>
             </div>
-            <div class="nav-navigation">
-                <a href="#beranda" class="nav-link active">Beranda</a>
-                <a href="#tentang-tujuan" class="nav-link">Tentang</a>
-                <a href="#eksplorasi-gis" class="nav-link">Peta Utama</a>
-                <a href="#galeri-progres" class="nav-link">Galeri Fisik</a>
-                <button class="nav-btn-action" id="btnNavPermohonan">Permohonan Data</button>
+            
+            <div class="nav-burger-btn" id="burgerToggle">
+                <i class='bx bx-menu' id="burgerIcon"></i>
             </div>
-            <div class="nav-action">
-                <a href="login.html" class="btn-login-portal" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                    <i class='bx bx-lock-alt'></i> Portal Login
-                </a>
+            
+            <div class="nav-menu-responsive" id="navMenuResponsive">
+                <div class="nav-navigation">
+                    <a href="#beranda" class="nav-link active">Beranda</a>
+                    <a href="#tentang-tujuan" class="nav-link">Tentang</a>
+                    <a href="#eksplorasi-gis" class="nav-link">Peta Utama</a>
+                    <a href="#galeri-progres" class="nav-link">Galeri Fisik</a>
+                    <button class="nav-btn-action" id="btnNavPermohonan">Permohonan Data</button>
+                </div>
+                <div class="nav-action">
+                    <a href="login.html" class="btn-login-portal"><i class='bx bx-lock-alt'></i> Portal Login</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -44,7 +48,6 @@
         <div class="hero-bg-image"></div>
         <div class="hero-gradient-overlay"></div>
         <div class="hero-content">
-            <!-- Hero elements animasi memudar ke atas -->
             <div class="hero-badge" data-aos="fade-up">
                 <span class="badge-pulse"></span> Integrasi Data Geospasial Aktual 2026
             </div>
@@ -265,7 +268,7 @@
                     <ul>
                         <li><a href="#beranda"><i class='bx bx-chevron-right'></i> Halaman Utama</a></li>
                         <li><a href="#eksplorasi-gis"><i class='bx bx-chevron-right'></i> Peta Grid Spasial</a></li>
-                        <li><button onclick="document.getElementById('btnNavPermohonan').click()"><i class='bx bx-chevron-right'></i> Form Hak Akses Data</button></li>
+                        <li><a href="#jajo"><i class='bx bx-chevron-right'></i> Form Hak Akses Data</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact-column">

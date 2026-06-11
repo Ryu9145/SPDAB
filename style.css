@@ -776,24 +776,8 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (Supaya Bagus di HP & Tablet)
+   STYLE INFRASTRUKTUR & DEKORASI (BASE DESKTOP STYLES)
    ========================================================================== */
-@media (max-width: 992px) {
-    .about-container {
-        flex-direction: column; 
-        gap: 40px;
-        padding: 0 24px;
-    }
-    
-    .about-narrative,
-    .about-visual-showcase {
-        flex: 0 0 100%;
-        width: 100%;
-        max-width: 100%;
-        text-align: center; 
-    }
-}
-
 .organic-badge {
     display: inline-flex;
     align-items: center;
@@ -875,7 +859,7 @@ body {
 .purpose-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
 .purpose-info p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
 
-/* Wujud dan Animasi Blob Organik */
+/* Wujud dan Animasi Blob Organik (Desktop Only Viewport Default) */
 .organic-blob-shape {
     position: absolute;
     width: 400px;
@@ -916,6 +900,47 @@ body {
 .water-card-glass h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
 .water-card-glass p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 
+
+/* ==========================================================================
+   STRUKTUR NAVIGASI UTAMA (DESKTOP VIEW)
+   ========================================================================== */
+.nav-burger-btn {
+    display: none; /* Tersembunyi otomatis di layar besar komputer */
+    font-size: 2rem;
+    color: #1e293b;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.nav-menu-responsive {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: 40px;
+}
+
+.nav-action {
+    display: flex;
+    align-items: center;
+}
+
+.btn-login-portal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto !important; 
+    white-space: nowrap;    
+    padding: 10px 20px;    
+    text-decoration: none !important;
+    color: inherit; 
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES 1: INTERMEDIATE MODE (Layar Tablet / Maksimal 991px)
+   ========================================================================== */
 @media (max-width: 991px) {
     .about-container {
         flex-direction: column; 
@@ -928,6 +953,7 @@ body {
     .about-visual-showcase {
         width: 100%;
         max-width: 100%;
+        flex: 0 0 100%;
     }
 
     .purpose-fluid-grid {
@@ -948,5 +974,164 @@ body {
     .water-card-glass {
         bottom: 5%;
         left: 2%;
+    }
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES 2: ULTIMATE MOBILE MODE (Layar HP / Maksimal 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* PERBAIKAN 2: HILANGKAN BLOB & KARTU INFORMASI FLOATING PADA MOBILE */
+    .organic-blob-shape,
+    .stats-floating-glass, 
+    .water-card-glass {
+        display: none !important; /* Menyembunyikan teks wilayah sungai & 100% validasi */
+    }
+
+    /* HEADER & BURGER BUTTON INTERACTION */
+    .nav-burger-btn {
+        display: block; 
+    }
+
+    .nav-menu-responsive {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        padding: 25px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        margin-left: 0;
+        
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 99;
+    }
+
+    .nav-menu-responsive.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-navigation {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 8px;
+        text-align: left;
+    }
+
+    .nav-link:hover, .nav-link.active {
+        background: rgba(30, 58, 138, 0.06);
+    }
+
+    .nav-btn-action {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 16px;
+    }
+
+    .nav-action {
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        padding-top: 15px;
+    }
+
+    .btn-login-portal {
+        width: 100% !important; 
+        justify-content: center;
+        padding: 14px;
+        text-decoration: none !important; /* Memastikan di mobile juga tidak ada underline */
+    }
+
+    /* 3. HERO LAYER & LAYOUT GRID SYSTEM ADJUSTMENT */
+    .premium-hero {
+        padding: 140px 20px 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+
+    .about-container {
+        gap: 30px;
+    }
+
+    .purpose-fluid-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gis-horizontal-control-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .segmented-pill-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .control-divider {
+        display: none;
+    }
+
+    .map-viewport-wrapper {
+        height: 400px;
+    }
+
+    .gallery-fluid-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    /* 4. RESPONSIVE FOOTER CORPORATE */
+    .footer-grid-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+    }
+
+    .footer-brand-column, .footer-links-column, .footer-contact-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-logo, .footer-social-links {
+        justify-content: center;
+    }
+
+    .footer-links-column ul {
+        width: 100%;
+        padding: 0;
+    }
+
+    .footer-links-column ul li a {
+        justify-content: center;
+    }
+
+    .footer-bottom-bar {
+        text-align: center;
+        padding: 20px 10px;
     }
 }
