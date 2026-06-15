@@ -1,190 +1,261 @@
 const kabupatenDataset = [
-    { name: "Banggai", lat: -1.35, lng: 122.78 },
-    { name: "Banggai Kepulauan", lat: -1.40, lng: 123.23 },
-    { name: "Banggai Laut", lat: -1.95, lng: 123.50 },
+    { name: "Banggai", lat: 1.35, lng: 122.78 },
+    { name: "Banggai Kepulauan", lat: 1.40, lng: 123.23 },
+    { name: "Banggai Laut", lat: 1.95, lng: 123.50 },
     { name: "Buol", lat: 1.03, lng: 121.37 },
     { name: "Donggala", lat: -0.40, lng: 119.75 },
     { name: "Morowali", lat: -2.48, lng: 121.90 },
     { name: "Morowali Utara", lat: -1.98, lng: 121.33 },
-    { name: "Parigi Moutong", lat: -0.47, lng: 120.25 },
+    { name: "Parigi Moutong", lat: 0.47, lng: 120.25 },
     { name: "Poso", lat: -1.40, lng: 120.75 },
     { name: "Sigi", lat: -1.38, lng: 119.96 },
     { name: "Tojo Una-Una", lat: -1.15, lng: 121.60 },
     { name: "Tolitoli", lat: 1.10, lng: 120.80 }
 ];
 
-let appState = {
-    category: 'sungai',
-    year: '2026',
-    activeKabupaten: 'ALL'
-};
+let appState = { category: 'sungai', year: '2026', activeKabupaten: 'ALL' };
 
 const spdabDB = {};
 kabupatenDataset.forEach(kab => {
     spdabDB[kab.name] = {};
     ['sungai', 'pantai', 'danau', 'air-baku'].forEach(cat => {
         spdabDB[kab.name][cat] = {};
-        ['2023', '2024', '2025', '2026'].forEach(yr => {
-            const seedLat = kab.lat + (Math.sin(kab.lat + yr) * 0.04);
-            const seedLng = kab.lng + (Math.cos(kab.lng + yr) * 0.04);
+        ['2024', '2025', '2026'].forEach(yr => {
             spdabDB[kab.name][cat][yr] = {
-                title: `Pekerjaan Konstruksi Fasilitas ${cat.replace('-', ' ').toUpperCase()} — Wilayah ${kab.name}`,
-                coords: [seedLat, seedLng],
-                volume: `${Math.floor(Math.random() * 3) + 1} Titik Struktur Selesai`,
-                catLabel: cat.replace('-', ' '),
-                notes: `Data spasial divalidasi oleh tim lapangan CIKASDA Provinsi Sulawesi Tengah untuk Tahun Anggaran ${yr}.`
+                title: `Pembangunan/Rehabilitasi ${cat.toUpperCase()} ${kab.name}`,
+                coords: [kab.lat + (Math.random() * 0.05), kab.lng + (Math.random() * 0.05)],
+                panjang: `${Math.floor(Math.random() * 800) + 200} Meter`,
+                catLabel: cat.replace('-', ' ').toUpperCase(),
+                informasi: `Data lapangan tervalidasi TA ${yr}. Infrastruktur berfungsi optimal.`
             };
         });
     });
 });
 
+const staticMap = L.map('staticMap', { zoomControl: false }).setView([-1.30, 121.40], 7);
+L.control.zoom({ position: 'bottomright' }).addTo(staticMap);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+    maxZoom: 19, 
+    attribution: '© OpenStreetMap' 
+}).addTo(staticMap);
+const staticMarkerLayer = L.layerGroup().addTo(staticMap);
+
 const map = L.map('map', { zoomControl: false }).setView([-1.30, 121.40], 7);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
-    attribution: '&copy; Google Maps Infrastructure'
-}).addTo(map);
-
+L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 20 }).addTo(map);
 const markerLayerGroup = L.layerGroup().addTo(map);
 
-function updateSpatialMapLayers() {
-    markerLayerGroup.clearLayers();
-    if (appState.year !== '2026') return;
+AOS.init({ duration: 1000, once: true, offset: 100, easing: 'ease-in-out' });
+const heroSwiper = new Swiper('.heroSwiper', {
+    loop: true, effect: 'fade', fadeEffect: { crossFade: true }, speed: 1000,
+    autoplay: { delay: 6000, disableOnInteraction: false },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+});
 
-    kabupatenDataset.forEach(kab => {
-        if (appState.activeKabupaten !== 'ALL' && appState.activeKabupaten !== kab.name) return;
+const filterModalEl = document.getElementById('filterModal');
+let bsFilterModal;
+if (filterModalEl) {
+    bsFilterModal = new bootstrap.Modal(filterModalEl);
+}
 
-        const dataNode = spdabDB[kab.name]?.[appState.category]?.[appState.year];
-        if (dataNode) {
-            const isHighlighted = appState.activeKabupaten === kab.name;
-            const customDivIcon = L.divIcon({
-                className: `gis-premium-marker ${isHighlighted ? 'active-pin' : ''}`,
-                iconSize: isHighlighted ? [16, 16] : [12, 12],
-                iconAnchor: isHighlighted ? [8, 8] : [6, 6]
-            });
+function openModal(category) {
+    document.getElementById('filterModalLabel').textContent = `Filter Data ${category.replace('-', ' ').toUpperCase()}`;
+    
+    const regionSelect = document.getElementById('modalRegion');
+    if (regionSelect) {
+        regionSelect.innerHTML = '<option value="ALL">Semua Kabupaten</option>';
+        kabupatenDataset.forEach(kab => {
+            const option = document.createElement('option');
+            option.value = kab.name;
+            option.textContent = kab.name;
+            regionSelect.appendChild(option);
+        });
+    }
 
-            const currentMarker = L.marker(dataNode.coords, { icon: customDivIcon }).addTo(markerLayerGroup);
-            
-            currentMarker.on('click', () => {
-                document.getElementById('regionSelectDropdown').value = kab.name;
-                appState.activeKabupaten = kab.name;
-                updateSpatialMapLayers();
-                openFloatingDataSheet(dataNode);
-                map.flyTo(dataNode.coords, 10, { animate: true, duration: 0.8 });
-            });
+    if (bsFilterModal) bsFilterModal.show();
+}
 
-            if (isHighlighted) openFloatingDataSheet(dataNode);
+function closeModal() {
+    if (bsFilterModal) bsFilterModal.hide();
+}
+
+function applyFilters() {
+    const modalYear = document.getElementById('modalYear');
+    const modalRegion = document.getElementById('modalRegion');
+    
+    if (modalYear) appState.year = modalYear.value;
+    if (modalRegion) appState.activeKabupaten = modalRegion.value;
+    
+    const deskripsiGis = document.getElementById('gisDeskripsiTeks');
+    if (deskripsiGis) {
+        const lokasiTeks = appState.activeKabupaten === 'ALL' ? 'Provinsi Sulawesi Tengah' : `Kabupaten ${appState.activeKabupaten}`;
+        deskripsiGis.innerHTML = `Menampilkan hasil pemetaan <strong>${appState.category.replace('-', ' ').toUpperCase()}</strong> untuk wilayah <strong>${lokasiTeks}</strong> pada Tahun Anggaran <strong>${appState.year}</strong>.`;
+    }
+
+    updateSpatialMapLayers();
+    
+    if (appState.activeKabupaten !== 'ALL') {
+        const target = kabupatenDataset.find(k => k.name === appState.activeKabupaten);
+        if (target) {
+            map.flyTo([target.lat, target.lng], 9, { animate: true, duration: 1.5 });
+            staticMap.flyTo([target.lat, target.lng], 9, { animate: true, duration: 1.5 });
+        }
+    } else {
+        map.flyTo([-1.30, 121.40], 7, { animate: true, duration: 1.5 });
+        staticMap.flyTo([-1.30, 121.40], 7, { animate: true, duration: 1.5 });
+    }
+    
+    closeModal();
+    const mapSection = document.querySelector('#eksplorasi-gis');
+    if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.static-project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const labelEl = card.querySelector('h3');
+        if (!labelEl) return;
+        
+        const label = labelEl.textContent;
+        const categoryMap = { "Data Sungai": "sungai", "Data Pantai": "pantai", "Data Danau": "danau", "Data Air Baku": "air-baku" };
+        
+        appState.category = categoryMap[label] || 'sungai';
+        openModal(appState.category);
+    });
+});
+
+const burgerToggle = document.getElementById('burgerToggle');
+const navMenuResponsive = document.getElementById('navMenuResponsive');
+if (burgerToggle && navMenuResponsive) {
+    burgerToggle.addEventListener('click', () => {
+        navMenuResponsive.classList.toggle('active');
+        const burgerIcon = document.getElementById('burgerIcon');
+        if(burgerIcon) {
+            burgerIcon.className = navMenuResponsive.classList.contains('active') ? 'bx bx-x' : 'bx bx-menu';
         }
     });
 }
 
-function buildRegionDropdown() {
-    const selectEl = document.getElementById('regionSelectDropdown');
+function updateSpatialMapLayers() {
+    markerLayerGroup.clearLayers();
+    staticMarkerLayer.clearLayers();
+    
     kabupatenDataset.forEach(kab => {
-        const option = document.createElement('option');
-        option.value = kab.name;
-        option.textContent = `Kabupaten ${kab.name}`;
-        selectEl.appendChild(option);
+        if (appState.activeKabupaten !== 'ALL' && appState.activeKabupaten !== kab.name) return;
+        
+        const dataNode = spdabDB[kab.name]?.[appState.category]?.[appState.year];
+        
+        if (dataNode) {
+            const marker = L.marker(dataNode.coords).addTo(markerLayerGroup);
+            marker.on('click', () => openFloatingDataSheet(dataNode));
+
+            L.marker(dataNode.coords).addTo(staticMarkerLayer);
+        }
     });
 }
-
-document.getElementById('regionSelectDropdown').addEventListener('change', (e) => {
-    const value = e.target.value;
-    appState.activeKabupaten = value;
-    if (value === 'ALL') {
-        closeFloatingDataSheet();
-        map.flyTo([-1.30, 121.40], 7, { animate: true, duration: 1 });
-    } else {
-        const findKab = kabupatenDataset.find(k => k.name === value);
-        if (findKab) map.flyTo([findKab.lat, findKab.lng], 10, { animate: true, duration: 1 });
-    }
-    updateSpatialMapLayers();
-});
-
-document.querySelectorAll('.segment-pill-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.segment-pill-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        appState.category = btn.getAttribute('data-category');
-        closeFloatingDataSheet();
-        updateSpatialMapLayers();
-    });
-});
-
-const modalEl = document.getElementById('requestDataModal');
-function triggerOpenModal() { modalEl.classList.add('active'); closeFloatingDataSheet(); }
-function triggerCloseModal() { modalEl.classList.remove('active'); }
-
-document.getElementById('closeModalBtn').addEventListener('click', triggerCloseModal);
-document.getElementById('cancelModalBtn').addEventListener('click', triggerCloseModal);
-document.getElementById('btnNavPermohonan').addEventListener('click', triggerOpenModal);
-
-document.getElementById('yearSelectDropdown').addEventListener('change', (e) => {
-    const selectedYr = e.target.value;
-    appState.year = selectedYr;
-    if (selectedYr !== '2026') {
-        triggerOpenModal();
-        updateSpatialMapLayers();
-    } else {
-        triggerCloseModal();
-        updateSpatialMapLayers();
-    }
-});
 
 const dataSheetEl = document.getElementById('gisDetailSheet');
-document.getElementById('closeSheetBtn').addEventListener('click', () => {
-    closeFloatingDataSheet();
-    appState.activeKabupaten = 'ALL';
-    document.getElementById('regionSelectDropdown').value = 'ALL';
+if (dataSheetEl) {
+    const closeBtn = document.getElementById('closeDataSheet');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            dataSheetEl.classList.remove('open');
+        });
+    }
+}
+
+function openFloatingDataSheet(data) {
+    if (!dataSheetEl) return;
+    
+    const titleEl = document.getElementById('sheetTitle');
+    const categoryEl = document.getElementById('sheetCategory');
+    const coordsEl = document.getElementById('sheetCoordinates');
+    const statusEl = document.getElementById('sheetStatus');
+    const descEl = document.getElementById('sheetDescription');
+
+    if (titleEl) titleEl.textContent = data.title;
+    if (categoryEl) categoryEl.textContent = data.catLabel;
+    if (coordsEl) coordsEl.textContent = `${data.coords[0].toFixed(5)}, ${data.coords[1].toFixed(5)}`;
+    if (statusEl) statusEl.textContent = `Tervalidasi (${appState.year})`; 
+    
+    if (descEl) {
+        descEl.innerHTML = `<strong>Dimensi/Panjang:</strong> ${data.panjang}<br><br>${data.informasi}`;
+    }
+    
+    dataSheetEl.classList.add('open');
+}
+
+function downloadPDF() {
+    const element = document.getElementById('pdfExportArea');
+    if (!element) return;
+    
+    const opt = {
+      margin:       [0.5, 0.5, 0.5, 0.5],
+      filename:     `Laporan_Spasial_${appState.category.toUpperCase()}_${appState.year}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+    };
+    
+    html2pdf().set(opt).from(element).save();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
     updateSpatialMapLayers();
 });
 
-function openFloatingDataSheet(data) {
-    document.getElementById('sheetCategoryBadge').textContent = data.catLabel;
-    document.getElementById('sheetProjectTitle').textContent = data.title;
-    document.getElementById('sheetVolumeValue').textContent = data.volume;
-    document.getElementById('sheetCoordsValue').textContent = `${data.coords[0].toFixed(5)}, ${data.coords[1].toFixed(5)}`;
-    document.getElementById('sheetDescriptionValue').textContent = data.notes;
-    dataSheetEl.classList.add('open');
-}
-function closeFloatingDataSheet() { dataSheetEl.classList.remove('open'); }
+document.addEventListener("DOMContentLoaded", () => {
+    const visualCards = document.querySelectorAll('#galeri-progres .horizontal-project-card[data-target]');
 
-buildRegionDropdown();
-updateSpatialMapLayers();
+    visualCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            
+            if (targetId) {
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-// ==========================================================================
-// LOGIKA BURGER MENU RESPONSIVE MOBILE
-// ==========================================================================
-const burgerToggle = document.getElementById('burgerToggle');
-const navMenuResponsive = document.getElementById('navMenuResponsive');
-const burgerIcon = document.getElementById('burgerIcon');
-const navLinks = document.querySelectorAll('.nav-link');
-
-burgerToggle.addEventListener('click', () => {
-    navMenuResponsive.classList.toggle('active');
-    
-    if (navMenuResponsive.classList.contains('active')) {
-        burgerIcon.className = 'bx bx-x';
-        burgerToggle.style.transform = 'rotate(90deg)';
-    } else {
-        burgerIcon.className = 'bx bx-menu';
-        burgerToggle.style.transform = 'rotate(0deg)';
-    }
-});
-
-
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenuResponsive.classList.remove('active');
-        burgerIcon.className = 'bx bx-menu';
-        burgerToggle.style.transform = 'rotate(0deg)';
+                    const originalBorder = targetElement.style.border;
+                    const originalBoxShadow = targetElement.style.boxShadow;
+                    
+                    targetElement.style.transition = 'all 0.4s ease';
+                    targetElement.style.border = '2px solid #0d6efd';
+                    targetElement.style.boxShadow = '0 0 15px rgba(13, 110, 253, 0.4)';
+                    
+                    setTimeout(() => {
+                        targetElement.style.border = originalBorder;
+                        targetElement.style.boxShadow = originalBoxShadow;
+                    }, 2000);
+                }
+            }
+        });
     });
 });
 
-   AOS.init({
-       duration: 1000,
-       once: true,
-       offset: 100,
-       easing: 'ease-in-out'
-   });
+document.addEventListener("DOMContentLoaded", () => {
+    const burgerToggle = document.getElementById("burgerToggle");
+    const burgerIcon = document.getElementById("burgerIcon");
+    const navNavigation = document.querySelector(".nav-navigation");
+
+    if (burgerToggle && navNavigation) {
+        burgerToggle.addEventListener("click", () => {
+            navNavigation.classList.toggle("active");
+
+            if (navNavigation.classList.contains("active")) {
+                burgerIcon.classList.replace("bx-menu", "bx-x");
+            } else {
+                burgerIcon.classList.replace("bx-x", "bx-menu");
+            }
+        });
+
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                navNavigation.classList.remove("active");
+                burgerIcon.classList.replace("bx-x", "bx-menu");
+            });
+        });
+    }
+});

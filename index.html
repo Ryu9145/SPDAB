@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPDAB CIKASDA — Provinsi Sulawesi Tengah</title>
+    <title>DISDA CIKASDA — Provinsi Sulawesi Tengah</title>
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,230 +19,369 @@
 
     <nav class="nav-bar">
         <div class="nav-wrapper">
-            <div class="brand-signature">
+            <div class="brand-signature d-flex align-items-center">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="sulteng-corporate-logo">
-                <div class="brand-meta">
-                    <h2>SPDAB CIKASDA</h2>
-                    <p>Provinsi Sulawesi Tengah</p>
+                <div class="brand-meta ms-2">
+                    <h2 class="mb-0">DISDA CIKASDA</h2>
+                    <p class="mb-0">Provinsi Sulawesi Tengah</p>
                 </div>
             </div>
             
-            <div class="nav-burger-btn" id="burgerToggle">
-                <i class='bx bx-menu' id="burgerIcon"></i>
-            </div>
-            
-            <div class="nav-menu-responsive" id="navMenuResponsive">
-                <div class="nav-navigation">
-                    <a href="#beranda" class="nav-link active">Beranda</a>
-                    <a href="#tentang-tujuan" class="nav-link">Tentang</a>
-                    <a href="#eksplorasi-gis" class="nav-link">Peta Utama</a>
-                    <a href="#galeri-progres" class="nav-link">Galeri Fisik</a>
-                    <button class="nav-btn-action" id="btnNavPermohonan">Permohonan Data</button>
-                </div>
-                <div class="nav-action">
+            <div class="nav-navigation">
+                <a href="#beranda" class="nav-link">Beranda</a>
+                <a href="#eksplorasi-gis" class="nav-link">Peta Utama</a>
+                <a href="#galeri-progres" class="nav-link">Galeri Fisik</a>
+                
+                <div class="nav-action-mobile">
                     <a href="login.html" class="btn-login-portal"><i class='bx bx-lock-alt'></i> Portal Login</a>
                 </div>
+            </div>
+
+            <div class="nav-action-desktop d-flex align-items-center">
+                <img src="https://e-bantekbgn.cikasda.sultengprov.go.id/wp-content/uploads/2024/12/Logo-Cikasda_comp3.png" alt="Logo Cikasda" style="height: 38px; width: auto;" class="me-3">
+                <a href="login.html" class="btn-login-portal"><i class='bx bx-lock-alt'></i> Portal Login</a>
+            </div>
+
+            <div class="nav-burger-btn" id="burgerToggle">
+                <i class='bx bx-menu' id="burgerIcon"></i>
             </div>
         </div>
     </nav>
 
-    <section id="beranda" class="premium-hero">
-        <div class="hero-bg-image"></div>
+    <section id="beranda" class="premium-hero-container">
+        
+        <div class="swiper heroSwiper hero-bg-layer">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><div class="slide-bg" style="background-image: url('https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_1318785017.jpg');"></div></div>
+                <div class="swiper-slide"><div class="slide-bg" style="background-image: url('https://img.magnific.com/foto-gratis/indah_1203-2633.jpg?semt=ais_hybrid&w=740&q=80');"></div></div>
+                <div class="swiper-slide"><div class="slide-bg" style="background-image: url('https://ik.imagekit.io/tvlk/blog/2020/03/Danau-Toba-Wikipedia.jpg');"></div></div>
+                <div class="swiper-slide"><div class="slide-bg" style="background-image: url('https://jasatirta2.co.id/src/frontend/images/parallax/parallax3.png');"></div></div>
+            </div>
+        </div>
+        
         <div class="hero-gradient-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge" data-aos="fade-up">
-                <span class="badge-pulse"></span> Integrasi Data Geospasial Aktual 2026
+
+        <div class="swiper-button-prev edge-nav-btn"></div>
+        <div class="swiper-button-next edge-nav-btn"></div>
+
+        <div class="hero-static-content">
+            <div class="hero-text-header" data-aos="fade-up">
+                <div class="hero-badge"><span class="badge-pulse"></span> Pemantauan Infrastruktur Terpadu</div>
+                <h1>DISDA CIKASDA <br>Data Informasi Sumber Daya Air</h1>
+                <p>Konsolidasi data spasial dan inventarisasi infrastruktur Sungai, Pantai, Danau, dan Air Baku di wilayah Provinsi Sulawesi Tengah secara transparan dan akurat.</p>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="150">Sistem Informasi Data Pembangunan <br>Sungai, Pantai, Danau dan Air Baku (SPDAB)</h1>
-            <p data-aos="fade-up" data-aos-delay="300">Konsolidasi data spasial infrastruktur sumber daya air di wilayah Provinsi Sulawesi Tengah dalam satu platform pemantauan yang transparan dan akurat.</p>
+
+            <div class="hero-cards-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="static-project-card">
+                    <div class="card-image-left">
+                        <img src="https://www.shutterstock.com/image-photo/aliran-sungai-kali-jompo-gunung-600nw-2249044693.jpg" alt="Sungai">
+                        <div class="diagonal-white-blend"></div>
+                        <div class="category-badge badge-sungai">Sungai</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text-wrapper">
+                            <h3>Data Sungai</h3>
+                            <p>Inventarisasi tanggul dan pekerjaan normalisasi.</p>
+                        </div>
+                        <a href="#eksplorasi-gis" class="btn-card-link">Lihat Peta <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+
+                <div class="static-project-card">
+                    <div class="card-image-left">
+                        <img src="https://indonesiajuara.asia/wp-content/uploads/2025/03/Pantai-Poganda-Banggai-IndonesiaJuara-Trip.webp" alt="Pantai">
+                        <div class="diagonal-white-blend"></div>
+                        <div class="category-badge badge-pantai">Pantai</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text-wrapper">
+                            <h3>Data Pantai</h3>
+                            <p>Monitoring berkala infrastruktur pengaman pesisir.</p>
+                        </div>
+                        <a href="#eksplorasi-gis" class="btn-card-link">Lihat Peta <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+
+                <div class="static-project-card">
+                    <div class="card-image-left">
+                        <img src="https://madika.id/wp-content/uploads/2023/09/Desa-Luk-Panateng.jpeg" alt="Danau">
+                        <div class="diagonal-white-blend"></div>
+                        <div class="category-badge badge-danau">Danau</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text-wrapper">
+                            <h3>Data Danau</h3>
+                            <p>Konservasi tampungan air dan sempadan danau.</p>
+                        </div>
+                        <a href="#eksplorasi-gis" class="btn-card-link">Lihat Peta <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+
+                <div class="static-project-card">
+                    <div class="card-image-left">
+                        <img src="https://pdamkotajogja.co.id/upload/b26ddf96a48897d89482bd422dda819d27143179720241009.jpg" alt="Air Baku">
+                        <div class="diagonal-white-blend"></div>
+                        <div class="category-badge badge-baku">Air Baku</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text-wrapper">
+                            <h3>Data Air Baku</h3>
+                            <p>Sistem jaringan perpipaan dan distribusi air bersih.</p>
+                        </div>
+                        <a href="#eksplorasi-gis" class="btn-card-link">Lihat Peta <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="tentang-tujuan" class="about-purpose-section">
-        <div class="about-container">
-            <div class="about-narrative">
-                <div class="organic-badge" data-aos="fade-down">
-                    <i class='bx bx-info-circle'></i> Manifes Platform
-                </div>
-                <h2 data-aos="fade-right" data-aos-delay="100">Menjaga Aliran Kehidupan, <br>Membangun Masa Depan Sulteng</h2>
-                <p class="body-text" data-aos="fade-up" data-aos-delay="200">
-                    Platform ini dirancang khusus untuk Melaksanakan Pengembangan dan Pengelolaan Jaringan Irigasi dan Rawa, serta Pengelolaan dan Konservasi Sungai, Danau,Pantai dan Air Baku di Wilayah Provinsi Sulawesi Tengah
-                </p>
-                
-                <div class="purpose-fluid-grid">
-                    <div class="purpose-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="purpose-icon blue"><i class='bx bx-bullseye'></i></div>
-                        <div class="purpose-info">
-                            <h3>Akurasi Spasial</h3>
-                            <p>Memastikan setiap titik konstruksi sungai dan air baku terekam presisi berbasis koordinat aktual.</p>
-                        </div>
-                    </div>
-                    <div class="purpose-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="purpose-icon green"><i class='bx bx-show-alt'></i></div>
-                        <div class="purpose-info">
-                            <h3>Transparansi Publik</h3>
-                            <p>Membuka akses monitoring bagi masyarakat, akademisi, dan instansi untuk memantau pemanfaatan anggaran.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-visual-showcase" data-aos="fade-left" data-aos-delay="300">
-                <div class="organic-blob-shape"></div>
-                <div class="stats-floating-glass animate-float">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Validasi Lapangan</span>
-                </div>
-                <div class="water-card-glass">
-                    <h4>Wilayah Sungai Strategis</h4>
-                    <p>Mencakup pengelolaan terpadu di 12 Kabupaten/Kota Sulawesi Tengah.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="eksplorasi-gis" class="gis-workspace-section" data-aos="fade-up" data-aos-duration="1200">
-        <div class="workspace-container">
+    <section id="eksplorasi-gis" class="gis-workspace-section py-5">
+        <div class="container-custom">
             
-            <div class="gis-horizontal-control-bar">
+            <div class="mapping-block mb-5">
+                <div class="mapping-header">
+                    <h3>Arsip Laporan Spasial (PDF)</h3>
+                    <p>Ringkasan data konstruksi siap cetak untuk pelaporan teknis.</p>
+                </div>
                 
-                <div class="control-segment">
-                    <span class="control-label">Jenis Infrastruktur</span>
-                    <div class="segmented-pill-wrapper">
-                        <button class="segment-pill-btn active" data-category="sungai"><span class="indicator-dot green"></span>Sungai</button>
-                        <button class="segment-pill-btn" data-category="pantai"><span class="indicator-dot blue"></span>Pantai</button>
-                        <button class="segment-pill-btn" data-category="danau"><span class="indicator-dot green"></span>Danau</button>
-                        <button class="segment-pill-btn" data-category="air-baku"><span class="indicator-dot blue"></span>Air Baku</button>
+                <div class="mapping-card shadow-sm border">
+                    <div id="pdfExportArea" style="background: #fff; padding: 10px; border-radius: 8px;">
+                        <div id="staticMap" style="height: 400px; width: 100%; border-radius: 6px; z-index: 1;"></div>
+                    </div>
+                    
+                    <div s  tyle="margin-top: 15px; text-align: right;">
+                        <button onclick="downloadPDF()" class="btn-export">
+                            <i class='bx bxs-file-pdf'></i> Ekspor PDF
+                        </button>
                     </div>
                 </div>
-
-                <div class="control-divider"></div>
-
-                <div class="control-segment">
-                    <span class="control-label">Tahun</span>
-                    <div class="custom-select-wrapper">
-                        <select id="yearSelectDropdown" class="minimal-select">
-                            <option value="2026">2026</option>
-                            <option value="2025">2025</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2022</option>
-                            <option value="2023">2022</option>
-                            <option value="2023">2021</option>
-                            <option value="2023">2021</option>
-                        </select>
-                        <i class='bx bx-chevron-down select-arrow'></i>
-                    </div>
-                </div>
-
-                <div class="control-divider"></div>
-
-                <div class="control-segment flex-grow-segment">
-                    <span class="control-label">Wilayah Kerja / Kabupaten</span>
-                    <div class="custom-select-wrapper">
-                        <select id="regionSelectDropdown" class="minimal-select">
-                            <option value="ALL">Seluruh Wilayah</option>
-                        </select>
-                        <i class='bx bx-map-pin select-arrow-left'></i> <i class='bx bx-chevron-down select-arrow'></i>
-                    </div>
-                </div>
-
             </div>
 
-            <main class="map-viewport-wrapper">
-                <div id="map"></div>
-
+            <div class="mapping-block">
+                <div class="mapping-header">
+                    <h3>Visualisasi Data Spasial Interaktif</h3>
+                    <p>Pantauan infrastruktur berbasis GIS untuk kebutuhan monitoring lapangan.</p>
+                </div>
+                
+                <div class="mapping-card shadow-sm border">
+                    <div id="map"></div>
+                    
                 <div class="floating-gis-data-sheet" id="gisDetailSheet">
                     <div class="sheet-top-bar">
-                        <div class="sheet-badge"><i class='bx bx-cube-alt'></i> <span id="sheetCategoryBadge">Sungai</span></div>
-                        <button class="sheet-close-btn" id="closeSheetBtn"><i class='bx bx-x'></i></button>
+                        <span class="sheet-badge"><i class='bx bx-info-circle'></i> Info Detail</span>
+                        <button id="closeDataSheet" class="sheet-close-btn">&times;</button>
                     </div>
-                    <h3 id="sheetProjectTitle">Nama Proyek Kontruksi</h3>
+                    
+                    <h3 id="sheetTitle">Nama Lokasi / Proyek</h3>
+                    
                     <div class="sheet-content-metrics">
                         <div class="metric-item">
-                            <span class="m-label">Volume Konstruksi</span>
-                            <span class="m-value" id="sheetVolumeValue">-</span>
+                            <span class="m-label">Kategori</span>
+                            <span class="m-value" id="sheetCategory">Sungai</span>
                         </div>
                         <div class="metric-item">
-                            <span class="m-label">Titik Koordinat GPS</span>
-                            <span class="m-value text-blue" id="sheetCoordsValue">-</span>
+                            <span class="m-label">Koordinat</span>
+                            <span class="m-value text-blue" id="sheetCoordinates">-0.8917, 119.8707</span>
                         </div>
-                        <div class="metric-card-notes">
-                            <h4>Catatan Teknis Lapangan</h4>
-                            <p id="sheetDescriptionValue">-</p>
+                        <div class="metric-item">
+                            <span class="m-label">Status</span>
+                            <span class="m-value" id="sheetStatus">Aktif</span>
                         </div>
                     </div>
+                    
+                    <div class="provider-info mt-3 p-3 bg-light" style="border-radius: 8px; border-left: 4px solid var(--brand-blue, #0d6efd);">
+                        <h5 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; color: #212529;">Informasi Penyedia</h5>
+                        <div style="font-size: 0.85rem; color: #495057;">
+                            <div style="margin-bottom: 6px;"><strong>Nama Paket:</strong> <span id="sheetNamaPaket" style="color: #000;">-</span></div>
+                            <div style="margin-bottom: 6px;"><strong>Penyedia:</strong> <span id="sheetNamaPenyedia" style="color: #000;">-</span></div>
+                            <div><strong>Nilai Kontrak:</strong> <span id="sheetNilaiKontrak" style="color: #198754; font-weight: 600;">-</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card-notes mt-3">
+                        <h4>Detail Pekerjaan</h4>
+                        <p id="sheetDescription">Deskripsi lokasi atau proyek akan dimuat di sini saat marker diklik pada peta.</p>
+                    </div>
                 </div>
-            </main>
+                </div>
+            </div>
 
         </div>
     </section>
 
-    <section id="galeri-progres" class="gallery-progress-section">
-        <div class="gallery-section-header" data-aos="fade-down">
-            <div class="organic-badge green">
-                <i class='bx bx-images'></i> Bukti Fisik Lapangan
+<section id="galeri-progres" class="construction-progress-section py-5">
+    <div class="container-custom">
+        
+        <div class="gallery-section-header text-center mb-5" data-aos="fade-down">
+            <div class="organic-badge green d-inline-flex align-items-center mb-3">
+                <i class='bx bx-buildings me-2'></i> Data Konstruksi Fisik
             </div>
-            <h2>Eksplorasi Visual Pembangunan</h2>
-            <p>Melihat perubahan nyata kondisi infrastruktur melalui dokumentasi autentik tim satuan kerja CIKASDA.</p>
+            <h2 style="font-weight: 800; color: #1e293b;">Eksplorasi Visual Pembangunan</h2>
+            <p class="text-muted">Melihat perubahan nyata kondisi infrastruktur melalui dokumentasi autentik tim satuan kerja CIKASDA.</p>
         </div>
 
-        <div class="gallery-fluid-grid">
+        <div class="construction-list-container">
             
-            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="100">
-                <div class="gallery-image-wrapper">
+            <div class="horizontal-project-card" data-aos="fade-up" data-aos-delay="100" data-target="detail-1" style="cursor: pointer;" title="Klik untuk lihat detail spasial">
+                <div class="h-card-image">
                     <img src="https://akcdn.detik.net.id/community/media/visual/2017/09/25/691a00d3-b2e8-4934-9be1-70853d0c3378.jpg?w=700&q=90" alt="Pekerjaan Sungai">
                     <span class="project-tag tag-river">Sungai</span>
                 </div>
-                <div class="gallery-details">
+                <div class="h-card-body">
                     <div class="project-meta-top">
                         <span><i class='bx bx-map'></i> Sigi</span>
                         <span class="status-badge done">Selesai</span>
                     </div>
                     <h3>Pembangunan Tanggul Normalisasi Sungai Gumbasa</h3>
-                    <p>Proteksi kawasan pemukiman warga dari luapan debit air sungai saat curah hujan tinggi.</p>
-                    <div class="project-progress-bar">
-                        <div class="bar-fill" style="width: 100%;"></div>
+                    <p class="h-card-desc">Proyek ini bertujuan untuk mengurangi risiko banjir di kawasan permukiman dan lahan pertanian sekitar aliran sungai dengan membangun tanggul penahan tanah dan perkuatan tebing sungai yang komprehensif.</p>
+                    
+                    <div class="project-progress-bar mt-auto">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="progress-label">Progres Fisik</span>
+                            <span class="progress-value">100%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar-fill" style="width: 100%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="200">
-                <div class="gallery-image-wrapper">
+            <div class="horizontal-project-card" data-aos="fade-up" data-aos-delay="200" data-target="detail-2" style="cursor: pointer;" title="Klik untuk lihat detail spasial">
+                <div class="h-card-image">
                     <img src="https://www.ijintender.co.id/images/article/3226%20Desember%202020.jpg" alt="Fasilitas Air Baku">
                     <span class="project-tag tag-water">Air Baku</span>
                 </div>
-                <div class="gallery-details">
+                <div class="h-card-body">
                     <div class="project-meta-top">
                         <span><i class='bx bx-map'></i> Donggala</span>
                         <span class="status-badge active">On Progress</span>
                     </div>
-                    <h3>Pipa Transmisi & Reservoir Air Baku Zona Pantai Barat</h3>
-                    <p>Peningkatan kapasitas suplai air bersih untuk kebutuhan domestik masyarakat pesisir.</p>
-                    <div class="project-progress-bar">
-                        <div class="bar-fill" style="width: 75%;"></div>
+                    <h3>Pipa Transmisi & Reservoir Air Baku Pantai Barat</h3>
+                    <p class="h-card-desc">Pemasangan jaringan pipa transmisi HDPE dan pembangunan instalasi reservoir untuk memastikan pasokan air bersih yang stabil dan merata bagi masyarakat pesisir pantai barat.</p>
+                    
+                    <div class="project-progress-bar mt-auto">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="progress-label">Progres Fisik</span>
+                            <span class="progress-value">75%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar-fill" style="width: 75%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-card" data-aos="zoom-in-up" data-aos-delay="300">
-                <div class="gallery-image-wrapper">
+            <div class="horizontal-project-card" data-aos="fade-up" data-aos-delay="300" data-target="detail-3" style="cursor: pointer;" title="Klik untuk lihat detail spasial">
+                <div class="h-card-image">
                     <img src="https://sulawesi.news/wp-content/uploads/2022/11/IMG-20221104-WA0272.jpg" alt="Pengamanan Pantai">
                     <span class="project-tag tag-coast">Pantai</span>
                 </div>
-                <div class="gallery-details">
+                <div class="h-card-body">
                     <div class="project-meta-top">
                         <span><i class='bx bx-map'></i> Palu</span>
                         <span class="status-badge done">Selesai</span>
                     </div>
-                    <h3>Revitalisasi Breakwater & Tanggul Pengaman Pantai Talise</h3>
-                    <p>Mereduksi energi gelombang pasang sekaligus menata kembali estetika ruang publik pantai kota.</p>
-                    <div class="project-progress-bar">
-                        <div class="bar-fill" style="width: 100%;"></div>
+                    <h3>Revitalisasi Tanggul Pengaman Pantai Talise</h3>
+                    <p class="h-card-desc">Pekerjaan perkuatan struktur penahan gelombang breakwater dan rehabilitasi kawasan pesisir Teluk Palu guna melindungi infrastruktur jalan serta memitigasi risiko abrasi.</p>
+                    
+                    <div class="project-progress-bar mt-auto">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="progress-label">Progres Fisik</span>
+                            <span class="progress-value">100%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar-fill" style="width: 100%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
+    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+            <button class="btn-load-more" id="loadMoreProjects">
+                Lihat Proyek Lainnya <i class='bx bx-chevron-down'></i>
+            </button>
+    </div>
+</section>
+
+    <section id="detail-konstruksi" class="py-5" style="background-color: #f8fafc;">
+        <div class="container-custom">
+            
+            <div class="gallery-section-header text-center mb-5" data-aos="fade-down">
+                <div class="organic-badge green d-inline-flex align-items-center mb-3">
+                    <i class='bx bx-buildings me-2'></i> Data Spasial Konstruksi
+                </div>
+                <h2 style="font-weight: 800; color: #1e293b;">Data Spasial Konstruksi</h2>
+                <p class="text-muted">Informasi detail lokasi dan titik koordinat pelaksanaan fisik proyek.</p>
+            </div>
+
+            <div class="detailed-list-container">
+                
+                <div class="dh-project-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="dh-project-header">
+                        <h3>Normalisasi Sungai Gumbasa</h3>
+                        <p>Pekerjaan pengerukan sedimen dasar sungai, perkuatan tebing menggunakan struktur bronjong, serta pembuatan tanggul penahan banjir untuk melindungi kawasan pertanian dan permukiman dari luapan air.</p>
+                    </div>
+                    
+                    <div class="detailed-horizontal-card">
+                        <div class="dh-card-image">
+                            <img src="https://akcdn.detik.net.id/community/media/visual/2017/09/25/691a00d3-b2e8-4934-9be1-70853d0c3378.jpg?w=700&q=90" alt="Sungai Gumbasa">
+                        </div>
+                        <div class="dh-map-section">
+                            <iframe src="https://maps.google.com/maps?q=-1.3833,119.9667&z=13&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="dh-map-info-corner">
+                                Tanggul Gumbasa | -1.3833, 119.9667 | 2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dh-project-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <div class="dh-project-header">
+                        <h3>Pipa Transmisi Air Baku Pantai Barat</h3>
+                        <p>Instalasi jaringan pipa transmisi HDPE dan pembangunan reservoir utama untuk mendistribusikan pasokan air baku dari mata air pegunungan menuju titik-titik layanan masyarakat pesisir Donggala.</p>
+                    </div>
+                    
+                    <div class="detailed-horizontal-card">
+                        <div class="dh-card-image">
+                            <img src="https://www.ijintender.co.id/images/article/3226%20Desember%202020.jpg" alt="Air Baku Donggala">
+                        </div>
+                        <div class="dh-map-section">
+                            <iframe src="https://maps.google.com/maps?q=-0.4055,119.7532&z=13&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="dh-map-info-corner">
+                                Pipa Air Baku | -0.4055, 119.7532 | 2025
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dh-project-wrapper" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dh-project-header">
+                        <h3>Revitalisasi Tanggul Pantai Talise</h3>
+                        <p>Pembangunan kembali struktur pelindung pantai menggunakan tetrapod dan tanggul laut (sea wall) guna menahan abrasi dan hantaman gelombang pasang di sepanjang pesisir Teluk Palu.</p>
+                    </div>
+                    
+                    <div class="detailed-horizontal-card">
+                        <div class="dh-card-image">
+                            <img src="https://sulawesi.news/wp-content/uploads/2022/11/IMG-20221104-WA0272.jpg" alt="Pengaman Pantai Talise">
+                        </div>
+                        <div class="dh-map-section">
+                            <iframe src="https://maps.google.com/maps?q=-0.8835,119.8643&hl=id&z=15&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="dh-map-info-corner">
+                                Pantai Talise | -0.8835, 119.8643 | 2024
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+                <button class="btn-load-more" id="loadMoreProjects">
+                    Lihat Proyek Lainnya <i class='bx bx-chevron-down'></i>
+                </button>
+            </div>
     </section>
 
     <div class="footer-blur-container">
@@ -249,75 +390,66 @@
                 <div class="footer-brand-column">
                     <div class="footer-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_arms_of_Central_Sulawesi.png" alt="Logo Sulteng" class="sulteng-corporate-logo-footer">
-                        <h3>SPDAB <span>CIKASDA</span></h3>
+                        <h3>DISDA <span>CIKASDA</span></h3>
                     </div>
                     <p class="footer-brand-text">Sistem Informasi Data Pembangunan Sungai, Pantai, Danau dan Air Baku Dinas Cipta Karya dan Sumber Daya Air Provinsi Sulawesi Tengah.</p>
-                    <div class="footer-social-links">
-                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                        <a href="#"><i class='bx bxl-instagram-alt' ></i></a>
-                        <a href="#"><i class='bx bxl-youtube' ></i></a>
-                    </div>
                 </div>
                 <div class="footer-links-column">
                     <h4>Akses Layanan</h4>
-                    <ul>
+                    <ul class="list-unstyled ps-0 m-0">
                         <li><a href="#beranda"><i class='bx bx-chevron-right'></i> Halaman Utama</a></li>
                         <li><a href="#eksplorasi-gis"><i class='bx bx-chevron-right'></i> Peta Grid Spasial</a></li>
-                        <li><a href="#jajo"><i class='bx bx-chevron-right'></i> Form Hak Akses Data</a></li>
+                        <li><a href="login.html"><i class='bx bx-chevron-right'></i> Portal Admin</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact-column">
                     <h4>Informasi & Kontak</h4>
-                    <p><i class='bx bx-map-pin' ></i> Jl. Kartini No.100, Kota Palu, Sulawesi Tengah</p>
+                    <p><i class='bx bx-map-pin' ></i> Jl. Kartini No.100, Palu, Sulawesi Tengah</p>
                     <p><i class='bx bx-envelope' ></i> support.spdab@sultengprov.go.id</p>
-                    <p><i class='bx bx-phone' ></i> (0451) 421234 / Fax: 421235</p>
                 </div>
             </div>
-
             <div class="footer-bottom-bar">
-                <p>&copy; 2026 Dinas CIKASDA Provinsi Sulawesi Tengah. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>&copy; 2026 Dinas CIKASDA Provinsi Sulawesi Tengah.</p>
             </div>
         </footer>
     </div>
 
-    <div class="modal-window-backdrop" id="requestDataModal">
-        <div class="modal-window-container">
-            <button class="modal-close-trigger" id="closeModalBtn"><i class='bx bx-x'></i></button>
-            <div class="modal-window-header">
-                <div class="modal-header-icon"><i class='bx bx-shield-quarter'></i></div>
-                <h3>Formulir Permohonan Akses Data</h3>
-                <p>Arsip data di bawah tahun 2026 memerlukan verifikasi dan perizinan tertulis dari pihak sekretariat CIKASDA.</p>
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Pilih Kriteria Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="requestForm" onsubmit="event.preventDefault(); alert('Formulir terkirim! Tim admin CIKASDA akan memverifikasi permohonan Anda via email.'); document.getElementById('closeModalBtn').click();">
-                <div class="form-group-input">
-                    <label>Nama Lengkap / Instansi Pemohon</label>
-                    <input type="text" required placeholder="Contoh: Badan Peneliti Universitas Tadulako">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Pilih Tahun Anggaran</label>
+                    <select class="form-select" id="modalYear">
+                        <option value="2026">Tahun 2026</option>
+                        <option value="2025">Tahun 2025</option>
+                        <option value="2024">Tahun 2024</option>
+                    </select>
                 </div>
-                <div class="form-group-input">
-                    <label>Alamat Email Kontak Resmi</label>
-                    <input type="email" required placeholder="name@domain.com">
+                <div class="mb-3">
+                    <label class="form-label">Wilayah Kabupaten</label>
+                    <select class="form-select" id="modalRegion">
+                        <option value="ALL">Semua Kabupaten</option>
+                    </select>
                 </div>
-                <div class="form-group-input">
-                    <label>Alamat Email Kontak Resmi</label>
-                    <input type="email" required placeholder="name@domain.com">
-                </div>
-                <div class="form-group-input">
-                    <label>Alasan Pengajuan Data Historis</label>
-                    <textarea rows="3" required placeholder="Tuliskan alasan analitis atau keperluan studi Anda dengan jelas..."></textarea>
-                </div>
-                <div class="modal-footer-actions">
-                    <button type="button" class="btn-action-outline" id="cancelModalBtn">Batalkan</button>
-                    <button type="submit" class="btn-action-solid">Kirim Berkas Pengajuan</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" onclick="applyFilters()">Tampilkan Peta</button>
+            </div>
+            </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    
-    <!-- Library Animasi AOS JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
